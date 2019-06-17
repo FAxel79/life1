@@ -6,7 +6,7 @@ WWidht = 1500
 HHeight = 900
 win = pygame.display.set_mode((WWidht, HHeight))
 pygame.display.set_caption("Life")
-fon  = pygame.font.SysFont('arial', 22)
+fon  = pygame.font.SysFont('arial', 24)
 win.fill((255, 255, 255))
 f = open('text1.txt', 'r')
 m = 0
@@ -18,7 +18,6 @@ nk =''
 snk = ''
 snk2 = ''
 
-#print(k)
 
 
 class Words:
@@ -42,6 +41,8 @@ def GetText (inn:Words):
             inn.bukva += 1
             d = ' '
             return d
+        #if d == ' ':
+        #    return u'\u02FD'# u'\u0420\u043e\u0441\u0441\u0438\u044f'
     elif b == al:
         inn.stroka += 1
         inn.bukva = 0
@@ -61,6 +62,7 @@ def compbukv(bu, vv):
         pygame.mixer.music.load('Sound_no.mp3')
         pygame.mixer.music.play()
     return False
+
 ww = Words
 ww.MassStrok = k
 chto = GetText(ww)
@@ -71,21 +73,19 @@ while run:
         if event.type == pygame.QUIT:
             run = False
         if event.type == pygame.KEYDOWN:
-            #print(event.unicode)
             nk = event.unicode
             if compbukv(chto, nk):
                 snk += nk
                 chto = GetText(ww)
-                snk2 += chto
+                snk2 += chto if chto != ' ' else u'\u007E'
     keys = pygame.key.get_pressed()
     text1 = fon.render(snk2,0 , (100, 80, 50))
     text = fon.render(snk, 0, (10, 80, 50))
     win.blit(text1, (10, 10))
-    win.blit(text, (160, 150))
+    win.blit(text, (100, 100))
 
     pass
     pygame.display.update()
-    #print(keys)
     if (keys[pygame.K_UP]):
         l = True
 pygame.quit()
