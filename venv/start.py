@@ -41,8 +41,6 @@ def GetText (inn:Words):
             inn.bukva += 1
             d = ' '
             return d
-        #if d == ' ':
-        #    return u'\u02FD'# u'\u0420\u043e\u0441\u0441\u0438\u044f'
     elif b == al:
         inn.stroka += 1
         inn.bukva = 0
